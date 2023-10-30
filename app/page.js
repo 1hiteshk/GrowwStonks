@@ -4,8 +4,8 @@ import useFetchData from "@/utils/helper/useFetchData";
 import CardStack from "@/components/CardStack/CardStack";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 import Spinner from "@/components/Spinner/Spinner";
-import Image from "next/image";
-import { useTheme } from "next-themes";
+// import Image from "next/image";
+// import { useTheme } from "next-themes";
 
 export default function Home() {
   const { data, loading, error } = useFetchData();

@@ -97,7 +97,7 @@ const Search = () => {
   const handleRouter = (item) => {
     setSearchQuery("");
     setVisiblity(false);
-    router.push(`/product?=${item}`);
+    router.push(`/${item}`);
   };
 
   return (

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Empty from "../Empty/Empty";
 import Spinner from "../Spinner/Spinner";
+import { BsSearch } from "react-icons/bs";
 const Search = () => {
   const searchCache = useSelector((store) => store.search);
 
@@ -105,12 +106,15 @@ const Search = () => {
       <div className="flex flex-col align-middle justify-center relative ">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
         </div>
-        <input
-          type="text"
-          onChange={(e) => handelChange(e)}
-          value={searchQuery}
-          className="px-4 py-2 rounded-full"
-        />
+        <div className="flex items-center px-4 py-2 rounded-full bg-gray-600 gap-x-3">
+            <BsSearch/>
+            <input
+            type="text"
+            onChange={(e) => handelChange(e)}
+            value={searchQuery}
+            className="bg-gray-600 focus:outline-none"
+            />
+        </div>
 
         {visiblity && (
           <div className="flex flex-col items-start mt-6 z-30 absolute top-6 left-5 bg-gray-700 p-8 rounded-lg">

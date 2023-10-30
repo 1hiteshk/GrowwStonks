@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import usePriceTrack from "@/utils/helper/usePriceTrack";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
 import {
@@ -26,16 +25,18 @@ ChartJS.register(
   ArcElement
 );
 
-const DailyChart = () => {
+const DailyChart = ({symbol}) => {
+
+  const apikey = process.env.API_KEY2;
   const fetchStockData = async () => {
     const response = await axios.get(
-      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo`
+      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apikey}`
     );
 
     return response.data;
   };
   //   const { data, loading, error } = usePriceTrack("IBM");
-  const [chartData, setChartData] = useState({});
+  // const [chartData, setChartData] = useState({});
 
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -49,7 +50,7 @@ const DailyChart = () => {
       setError(null);
 
       try {
-        const result = await fetchStockData("IBM");
+        const result = await fetchStockData();
         // console.log(result["Time Series (Daily)"]);
 
         setData(result);
@@ -69,6 +70,8 @@ const DailyChart = () => {
 
     fetchData();
   }, []);
+
+  console.log(data, labels, values)
 
   const options = {
     // responsive: true,

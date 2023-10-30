@@ -21,7 +21,9 @@ import MonthlyChart from "@/components/Charts/MonthyChart";
 import { MdOutlineDataExploration } from "react-icons/md";
 
 const page = ({ params }) => {
+  console.log(params?.stocksymbol)
     const { data, loading, error } = useCustomData(params?.stocksymbol);
+    const symbol = params?.stocksymbol
   // const { data, loading, error } = useCustomData("IBM");
   const [menu, setMenu] = useState(1);
 
@@ -96,11 +98,11 @@ const page = ({ params }) => {
                   </li>
                 </ul>
                 {menu === 1 ? (
-                  <DailyChart />
+                  <DailyChart symbol={symbol}/>
                 ) : menu === 2 ? (
-                  <WeeklyChart />
+                  <WeeklyChart symbol={symbol}/>
                 ) : menu === 3 ? (
-                  <MonthlyChart />
+                  <MonthlyChart symbol={symbol}/>
                 ) : null}
               </div>
 
@@ -114,23 +116,23 @@ const page = ({ params }) => {
                     <BsFillArrowUpSquareFill className="mr-2" />
                     52-Week-High:
                     <span className="text-green-500 ml-2">
-                      ${data["52WeekHigh"]}
+                      {data["52WeekHigh"] ? `$${data["52WeekHigh"]}` : "Not Displayed" }
                     </span>
                   </div>
                   <div className="flex items-center">
                     <BsFillArrowDownSquareFill className="mr-2" />
                     52-Week-Low:
                     <span className="text-red-500 ml-2">
-                      ${data["52WeekLow"]}
+                    {data["52WeekLow"] ? `$${data["52WeekLow"]}` : "Not Displayed" }
                     </span>
                   </div>
                   <div className="flex items-center">
                     <HiOutlineCurrencyDollar className="mr-2" />
-                    50-Day-Moving-Average: ${data["50DayMovingAverage"]}
+                    50-Day-Moving-Average: {data["50DayMovingAverage"] ? `$${data["50DayMovingAverage"]}` : "Not Displayed" }
                   </div>
                   <div className="flex items-center">
                     <HiOutlineCurrencyDollar className="mr-2" />
-                    200-Day-Moving-Average: ${data["200DayMovingAverage"]}
+                    200-Day-Moving-Average: {data["200DayMovingAverage"] ? `$${data["200DayMovingAverage"]}` : "Not Displayed" }
                   </div>
                 </div>
 
@@ -140,15 +142,15 @@ const page = ({ params }) => {
                   </div>
                   <div className="flex items-center">
                     <RiStockFill className="mr-2" />
-                    Shares Outstanding: {data?.SharesOutstanding}
+                    Shares Outstanding: {data?.SharesOutstanding || "Not Displayed"}
                   </div>
                   <div className="flex items-center">
                     <BsCalendarDateFill className="mr-2" /> Dividend Date:{" "}
-                    {data?.DividendDate}
+                    {data?.DividendDate || "Not Displayed" }
                   </div>
                   <div className="flex items-center">
                     <BsCalendarDateFill className="mr-2" />
-                    Ex Dividend Date: {data?.ExDividendDate}
+                    Ex Dividend Date: {data?.ExDividendDate || "Not Displayed"}
                   </div>
                 </div>
 
@@ -158,19 +160,19 @@ const page = ({ params }) => {
                   </div>
                   <div className="flex items-center">
                     <MdOutlineDataExploration className="mr-2" />
-                    P/E Ratio: {data?.PERatio}
+                    P/E Ratio: {data?.PERatio || "Not Displayed"}
                   </div>
                   <div className="flex items-center">
                     <MdOutlineDataExploration className="mr-2" />
-                    P/E-G Ratio: {data?.PEGRatio}
+                    P/E-G Ratio: {data?.PEGRatio || "Not Displayed"}
                   </div>
                   <div className="flex items-center">
                     <SiCoinmarketcap className="mr-2" />
-                    Market Cap: {data?.MarketCapitalization}
+                    Market Cap: {data?.MarketCapitalization || "Not Displayed"}
                   </div>
                   <div className="flex items-center">
                     <BsFillCalculatorFill className="mr-2" />
-                    Dividend Per Share: {data?.DividendPerShare}
+                    Dividend Per Share: {data?.DividendPerShare || "Not Displayed"}
                   </div>
                 </div>
 
@@ -180,15 +182,15 @@ const page = ({ params }) => {
                   </div>
                   <div className="flex items-center">
                     <AiFillCreditCard className="mr-2" />
-                    CIK: {data?.CIK}
+                    CIK: {data?.CIK || "Not Displayed"}
                   </div>
                   <div className="flex items-center">
                     <FaExchangeAlt className="mr-2" />
-                    Exchange: {data?.Exchange}
+                    Exchange: {data?.Exchange || "Not Displayed"}
                   </div>
                   <div className="flex items-center">
                     <BsFlagFill className="mr-2" />
-                    Country: {data?.Country}
+                    Country: {data?.Country || "Not Displayed"}
                   </div>
                 </div>
               </div>

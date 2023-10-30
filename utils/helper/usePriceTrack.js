@@ -6,7 +6,7 @@ const usePriceTrack = (params) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const apikey = process.env.API_KEY3;
+  const apikey = process.env.API_KEY2;
 
   useEffect(() => {
     const fetchData = async () => {

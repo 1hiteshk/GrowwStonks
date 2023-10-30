@@ -21,8 +21,8 @@ import MonthlyChart from "@/components/Charts/MonthyChart";
 import { MdOutlineDataExploration } from "react-icons/md";
 
 const page = ({ params }) => {
-  //   const { data, loading, error } = useCustomData(params?.stocksymbol);
-  const { data, loading, error } = useCustomData("IBM");
+    const { data, loading, error } = useCustomData(params?.stocksymbol);
+  // const { data, loading, error } = useCustomData("IBM");
   const [menu, setMenu] = useState(1);
 
   //calculation for current price and percentage growth/loss

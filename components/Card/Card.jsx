@@ -28,7 +28,7 @@ const card = (props) => {
         </span>
       </div>
       <Link
-        href={`/product?=${data?.ticker}`}
+        href={`/${data?.ticker}`}
         className="relative inline-flex items-center justify-start px-3 py-1 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group mt-2"
       >
         <span className="w-48 h-48 rounded rotate-[-40deg] bg-yellow-300 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>

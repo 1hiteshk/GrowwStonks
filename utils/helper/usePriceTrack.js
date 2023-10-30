@@ -6,6 +6,8 @@ const usePriceTrack = (params) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const apikey = process.env.API_KEY3;
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -13,7 +15,7 @@ const usePriceTrack = (params) => {
 
       try {
         const response = await axios.get(
-          `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${params}&apikey=demo`
+          `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${params}&apikey=${apikey}`
         );
         if (response && response.status === 200) {
           setData(response.data);

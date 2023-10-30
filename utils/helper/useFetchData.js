@@ -5,6 +5,7 @@ const useFetchData = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const apikey = process.env.API_KEY3;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,7 +14,7 @@ const useFetchData = () => {
 
       try {
         const response = await axios.get(
-          "https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=demo"
+          `https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${apikey}`
         );
         console.log(response);
         if (response && response.status === 200) {

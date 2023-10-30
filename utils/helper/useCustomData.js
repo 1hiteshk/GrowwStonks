@@ -5,6 +5,7 @@ const useCustomData = (params) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const apikey = process.env.API_KEY2;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,7 +14,7 @@ const useCustomData = (params) => {
 
       try {
         const response = await axios.get(
-          `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${params}&apikey=demo`
+          `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${params}&apikey=${apikey}`
         );
         if (response && response.status === 200) {
           setData(response.data);

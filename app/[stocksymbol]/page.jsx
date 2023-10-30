@@ -28,8 +28,8 @@ const page = ({ params }) => {
   const [menu, setMenu] = useState(1);
 
   //calculation for current price and percentage growth/loss
-  const currPrice = data?.MarketCapitalization && data?.SharesOutstanding ? data?.MarketCapitalization / data?.SharesOutstanding : "Not Available" ;
-  const percentChange = currPrice === "Not Available" ? "Not Available" : 
+  const currPrice = data?.MarketCapitalization && data?.SharesOutstanding ? data?.MarketCapitalization / data?.SharesOutstanding : 0.00 ;
+  const percentChange = currPrice === 0.00 ? 0.00 : 
     ((currPrice - data["52WeekLow"]) / data["52WeekLow"]) * 100;
 
   return (

@@ -1,10 +1,10 @@
 // "use client";
 import "./globals.css";
-import Header from "@/components/Header/Header";
 import { Providers } from "@/redux/providers";
 // import { ThemeProvider } from "next-themes";
 // import Provviders from "./provviders";
-import { ThemeSwitcher } from "./ThemeSwitcher";
+// import { ThemeSwitcher } from "./ThemeSwitcher";
+import Header from "@/components/Header/Header";
 
 export const metadata = {
   title: "GrowwStonks",
@@ -20,8 +20,8 @@ export default function RootLayout({ children }) {
     <html lang="en" className="light" style={{colorScheme: 'light'}}>
       <body className="dark">
         <Providers>
-          <Header />
-          <ThemeSwitcher />
+          <Header/>
+          {/* <ThemeSwitcher /> */}
           {children}
         </Providers>
       </body>

@@ -16,7 +16,7 @@ const CardStack = ({ data, color, loading, menu }) => {
 
   const handleLoadMoreClick = () => {
     const newCount = displayedItemsCount + 10;
-    setObject(data.slice(0, newCount));
+    setObject(data?.slice(0, newCount));
     setDisplayedItemsCount(newCount);
     newCount >= data?.length ? setIsDisable(true) : null;
   };

@@ -1,13 +1,13 @@
 "use client";
 import { useState } from "react";
 import searchSlice from "@/redux/searchSlice";
-import { useDispatch, useSelector } from "react-redux";
 import { cacheResults } from "@/redux/searchSlice";
 import { useEffect } from "react";
 import axios from "axios";
 import { MdDarkMode } from "react-icons/md";
 import { MdLightMode } from "react-icons/md";
 import { ThemeSwitcher } from "@/app/ThemeSwitcher";
+import Search from "../SearchComp/Search";
 
 const Header = () => {
   // const [input, setInput] = useState("");
@@ -15,9 +15,8 @@ const Header = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const searchCache = useSelector((store) => store.search);
 
   const [theme, setTheme] = useState("dark");
   const [darkMode, setDarkMode] = useState(true);
@@ -35,24 +34,7 @@ const Header = () => {
     setDarkMode(!darkMode);
   };
 
-  useEffect(() => {
-    // api call
-
-    //make an api call after every key press
-    //but if the diff. b/w two press/2 api call is <200ms decline api call
-    const timer = setTimeout(() => {
-      if (searchCache[searchQuery]) {
-        // cache is stored in redux store so when we back <- less api calls made
-        setSuggestions(searchCache[searchQuery]);
-      } else {
-        getSearchSuggestion();
-      }
-    }, 200);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
+  
 
   const getSearchSuggestion = async () => {
     console.log("API call - " + searchQuery);
@@ -94,70 +76,13 @@ const Header = () => {
           </span>
         </a>
         <div className="relative block w-full sm:w-1/3">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-            {/* <span className="sr-only">Search icon</span> */}
-          </div>
+        <Search/>
 
           {/* <button  className='dark:text-white text-sm cursor-pointer h-10 flex items-center px-3 mb-[1px] rounded-lg hover:bg-white/[0.15]'
       onClick={handleThemeSwitch}> { darkMode ? <MdDarkMode className='mr-6'/> : <MdLightMode className='mr-6' />} {theme} </button>
           <p className="text-purple-300 dark:text-white">hey</p> */}
-          <input
-            type="text"
-            id="search-navbar"
-            value={searchQuery}
-            className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Search..."
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={handelFocus}
-            onBlur={() => setTimeout(() => setShowSuggestions(false), 400)}
-          />
+         
           {/* <ThemeSwitcher /> */}
-
-          {/* <div>
-
-{ showSuggestions && <div>
-
-
- <div>
-   <button>ALL</button>
-   <button>ETF</button>
-   <button>Stocks</button>
- </div>
-
-<div className="fixed top-12 z-10 md:pl-0 md:ml-5 bg-slate-700 w-44 md:w-64 lg:w-[541px] rounded-lg mt-1">
- <ul>
-
-   {suggestions?.length !==0 ?
-   suggestions?.map((suggestion,index) => {
-     return (
-       <li
-         key={suggestion}
-         className="shadow-sm py-2 px-3 flex items-center hover:bg-gray-900 w-full cursor-pointer"
-       >
-           {suggestion['2. name']}
-       </li>
-     );
-   }): " "}
- </ul>
-</div>
-
- </div>}
-</div> */}
         </div>
       </div>
     </nav>
